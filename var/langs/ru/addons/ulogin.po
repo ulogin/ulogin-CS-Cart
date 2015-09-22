@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cs-cart-latest\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+
+msgctxt "Addons::name::ulogin"
+msgid "ulogin"
+msgstr "uLogin"
+
+msgctxt "Addons::description::ulogin"
+msgid "Social Auth Widget"
+msgstr "Виджет авторизации через социальные сети"
+
+msgctxt "Languages::ulogin_auth_error_title"
+msgid "Auth Error"
+msgstr "Через данную форму выполнить вход/регистрацию невозможно"
+
+msgctxt "Languages::ulogin_auth_error_msg"
+msgid "Set Email in uLogin Return Fields"
+msgstr "Сообщите администратору сайта о следующей ошибке: Необходимо указать email в возвращаемых полях uLogin"
+
+msgctxt "Languages::ulogin_sync_error_title"
+msgid "uLogin Sync Error Title"
+msgstr "Ошибка Синхронизации"
+
+msgctxt "Languages::ulogin_sync_error_msg"
+msgid "ulogin Sync Error Msg"
+msgstr "Данный аккаунт привязан к другому пользователю"
+
+msgctxt "Languages::ulogin_error"
+msgid "uLogin Error"
+msgstr "Ошибка работы uLogin"
+
+msgctxt "Languages::ulogin_error_data"
+msgid "uLogin Error Data"
+msgstr "Данные о пользователе содержат неверный формат"
+
+msgctxt "Languages::ulogin_error_token"
+msgid "uLogin Token Error"
+msgstr "Не удалось получить данные о пользователе с помощью токена"
+
+msgctxt "Languages::ulogin_error_host"
+msgid "uLogin Error Host"
+msgstr "Адрес хоста не совпадает с оригиналом"
+
+msgctxt "Languages::ulogin_error_token_invalid"
+msgid "uLogin Error Token Invalid"
+msgstr "Неверный токен"
+
+msgctxt "Languages::ulogin_error_data_identity"
+msgid "uLogin Error Data Identity"
+msgstr "В возвращаемых данных отсутствует переменная 'identity'"
+
+msgctxt "Languages::ulogin_error_timeout"
+msgid "uLogin Error Host"
+msgstr "Время жизни токена истекло"
+
+msgctxt "Languages::ulogin_social_login"
+msgid "uLogin Social Auth"
+msgstr "Войти через соц. сеть"
+
+msgctxt "Languages::ulogin_sync_title"
+msgid "uLogin Sync Title"
+msgstr "Синхронизация аккаунтов"
+
+msgctxt "Languages::ulogin_sync_help"
+msgid "uLogin Sync Help"
+msgstr "Привяжите ваши аккаунты соц. сетей к личному кабинету для быстрой авторизации через любой из них"
+
+msgctxt "Languages::ulogin_sync_accounts"
+msgid "uLogin Sync Accounts"
+msgstr "Привязанные аккаунты"
+
+msgctxt "Languages::ulogin_sync_accounts_delete"
+msgid "uLogin Sync Accounts Delete"
+msgstr "Вы можете удалить привязку к аккаунту, кликнув по значку"
+
+msgctxt "Languages::ulogin_sync_accounts_error"
+msgid "uLogin Sync Accounts Error"
+msgstr "Требуется привязка новой учётной записи социальной сети к этому аккаунту."
+
+msgctxt "Languages::ulogin_sync_accounts_error_msg"
+msgid "uLogin Sync Accounts Error Msg"
+msgstr "С данным аккаунтом уже связаны данные из другой социальной сети"
+
+msgctxt "Languages::ulogin_sync_confirm_title"
+msgid "uLogin Sync Confirm Title"
+msgstr "Подтверждение аккаунта"
+
+msgctxt "Languages::ulogin_sync_accounts_confirm_error_msg"
+msgid "uLogin Sync Confirm Accounts Error"
+msgstr "Электронный адрес данного аккаунта совпадает с электронным адресом существующего пользователя"
+
+msgctxt "Languages::ulogin_sync_accounts_confirm_error"
+msgid "uLogin Sync Confirm Accounts Error Msg"
+msgstr "Требуется подтверждение на владение указанным email"
+
+msgctxt "Languages::ulogin_back"
+msgid "uLogin Back"
+msgstr "Вернуться"
+
+msgctxt "SettingsSections::ulogin::general"
+msgid "ulogin Settings"
+msgstr "Настройки uLogin"
+
+msgctxt "SettingsOptions::ulogin::ulogin_auth_id"
+msgid "ulogin ID Auth Form"
+msgstr "uLogin ID форма входа"
+
+msgctxt "SettingsOptions::ulogin::ulogin_sync_id"
+msgid "ulogin ID Sync Form"
+msgstr "uLogin ID форма синхронизации"
+
+msgctxt "SettingsTooltips::ulogin::ulogin_auth_id"
+msgid "ulogin ID Auth Form Tooltip"
+msgstr "Идентификатор виджета авторизации и регистрации. Пустое поле - виджет по умолчанию"
+
+msgctxt "SettingsTooltips::ulogin::ulogin_sync_id"
+msgid "ulogin ID Auth Form Tooltip"
+msgstr "Идентификатор виджета панели синхронизации. Пустое поле - виджет по умолчанию"

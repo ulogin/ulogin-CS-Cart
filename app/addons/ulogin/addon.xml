@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>ulogin</id>
+    <version>2.0</version>
+    <priority>10</priority>
+    <position>0</position>
+    <status>active</status>
+    <default_language>ru</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <compatibility>
+        <conflicts>loginza,hybrid_auth,janrain</conflicts>
+    </compatibility>
+    <settings>
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="ulogin_auth_id">
+                        <type>input</type>
+                        <default_value/>
+                    </item>
+                    <item id="ulogin_sync_id">
+                        <type>input</type>
+                        <default_value/>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+    <queries>
+        <item for="install">
+            CREATE TABLE `?:ulogin` (
+            `id` int(20) UNSIGNED NOT NULL auto_increment,
+            `user_id` int (20) unsigned NOT NULL,
+            `identity` varchar(250) NOT NULL,
+            `network` varchar(20),
+            PRIMARY KEY  (id),
+            UNIQUE KEY `identity` (identity))
+            ENGINE=MyISAM DEFAULT CHARSET=UTF8
+        </item>
+    </queries>
+</addon>
