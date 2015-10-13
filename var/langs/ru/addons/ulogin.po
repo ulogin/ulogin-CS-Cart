@@ -52,6 +52,14 @@ msgctxt "Languages::ulogin_error_data_identity"
 msgid "uLogin Error Data Identity"
 msgstr "В возвращаемых данных отсутствует переменная 'identity'"
 
+msgctxt "Languages::ulogin_error_data_first_name"
+msgid "uLogin Error Data First Name"
+msgstr "В возвращаемых данных отсутствует переменная 'first_name'"
+
+msgctxt "Languages::ulogin_error_data_last_name"
+msgid "uLogin Error Data Last Name"
+msgstr "В возвращаемых данных отсутствует переменная 'last_name'"
+
 msgctxt "Languages::ulogin_error_timeout"
 msgid "uLogin Error Host"
 msgstr "Время жизни токена истекло"

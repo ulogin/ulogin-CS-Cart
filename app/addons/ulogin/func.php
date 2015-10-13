@@ -20,13 +20,13 @@ use Tygh\Mailer;
 function fn_ulogin_authpanel($place = 0) {
 	$backurl = fn_url(Registry::get('config.current_url'));
 	$redirect_uri = urlencode(fn_url(Registry::get('config.http_location') . '/index.php?dispatch=ulogin.login&backurl=' . $backurl));
-	$ulogin_default_options = array();
+	$ulogin_default_options = array ();
 	$ulogin_default_options['display'] = 'panel';
 	$ulogin_default_options['providers'] = 'vkontakte,odnoklassniki,mailru,facebook,google,yandex,twitter';
 	$ulogin_default_options['fields'] = 'first_name,last_name,email,photo,photo_big';
 	$ulogin_default_options['optional'] = 'sex,bdate,country,city';
 	$ulogin_default_options['hidden'] = '';
-	$ulogin_options = array();
+	$ulogin_options = array ();
 	$options = Registry::get('addons.ulogin');
 	$ulogin_options['ulogin_id1'] = $options['ulogin_auth_id'];
 	$ulogin_options['ulogin_id2'] = $options['ulogin_sync_id'];
@@ -72,7 +72,7 @@ function fn_ulogin_syncpanel($user_id = 0) {
 	if(empty($user_id)) {
 		return '';
 	}
-	$networks = array();
+	$networks = array ();
 	$res = db_get_array("SELECT * FROM ?:ulogin WHERE user_id = ?i", $user_id);
 	if($res) {
 		foreach($res as $network) {
@@ -113,7 +113,7 @@ function fn_ulogin_syncpanel($user_id = 0) {
 function fn_ulogin_GetUserFromToken($token = false) {
 	$response = false;
 	if($token) {
-		$data = array('cms' => 'cs-cart', 'version' => constant('PRODUCT_VERSION'));
+		$data = array ( 'cms' => 'cs-cart', 'version' => constant('PRODUCT_VERSION') );
 		$request = 'https://ulogin.ru/token.php?token=' . $token . '&host=' . $_SERVER['HTTP_HOST'] . '&data=' . base64_encode(json_encode($data));
 		$response = Http::get($request);
 	}
@@ -156,6 +156,16 @@ function fn_ulogin_CheckTokenError($u_user) {
 	}
 	if(!isset($u_user['identity'])) {
 		fn_set_notification('E', __('ulogin_error'), __('ulogin_error_data_identity'));
+
+		return false;
+	}
+	if(!isset($u_user['first_name'])) {
+		fn_set_notification('E', __('ulogin_error'), __('ulogin_error_data_first_name'));
+
+		return false;
+	}
+	if(!isset($u_user['last_name'])) {
+		fn_set_notification('E', __('ulogin_error'), __('ulogin_error_data_last_name'));
 
 		return false;
 	}
@@ -216,7 +226,7 @@ function fn_ulogin_registration_user($u_user, $in_db = 0) {
 	$isLoggedIn = (!empty($current_user)) ? 1 : 0;
 	if(!$check_m_user && !$isLoggedIn) { // отсутствует пользователь с таким email в базе -> регистрация
 		$date = explode('.', $u_user['bdate']);
-		$user_data = array();
+		$user_data = array ();
 		$user_data['email'] = $u_user['email'];
 		$user_data['user_login'] = fn_ulogin_generateNickname($u_user['first_name'], $u_user['last_name'], $u_user['nickname'], $u_user['bdate']);
 		$user_data['user_type'] = 'C';
@@ -233,7 +243,9 @@ function fn_ulogin_registration_user($u_user, $in_db = 0) {
 		$user_data['s_city'] = isset($u_user['city']) ? $u_user['city'] : '';
 		$user_data['birthday'] = isset($date['2']) ? $date['2'] : '';
 		list($user_data['user_id'], $profile_id) = fn_update_user('', $user_data, $auth, true, true, true);
-		$u_user_data = array('user_id' => $user_data['user_id'], 'identity' => $u_user['identity'], 'network' => $u_user['network']);
+		$u_user_data = array (
+			'user_id' => $user_data['user_id'], 'identity' => $u_user['identity'], 'network' => $u_user['network']
+		);
 		db_query("INSERT INTO ?:ulogin ?e", $u_user_data);
 
 		return $user_data['user_id'];
@@ -254,7 +266,9 @@ function fn_ulogin_registration_user($u_user, $in_db = 0) {
 					exit;
 				}
 			}
-			$u_user_data = array('user_id' => $user_id, 'identity' => $u_user['identity'], 'network' => $u_user['network']);
+			$u_user_data = array (
+				'user_id' => $user_id, 'identity' => $u_user['identity'], 'network' => $u_user['network']
+			);
 			db_query("INSERT INTO ?:ulogin ?e", $u_user_data);
 
 			return $user_id;
@@ -274,11 +288,13 @@ function fn_ulogin_registration_user($u_user, $in_db = 0) {
  * @param array $delimiters
  * @return string
  */
-function fn_ulogin_generateNickname($first_name, $last_name = "", $nickname = "", $bdate = "", $delimiters = array('.', '_')) {
+function fn_ulogin_generateNickname($first_name, $last_name = "", $nickname = "", $bdate = "", $delimiters = array (
+		'.', '_'
+	)) {
 	$delim = array_shift($delimiters);
 	$first_name = fn_ulogin_translitIt($first_name);
 	$first_name_s = substr($first_name, 0, 1);
-	$variants = array();
+	$variants = array ();
 	if(!empty($nickname))
 		$variants[] = $nickname;
 	$variants[] = $first_name;
@@ -365,7 +381,16 @@ function fn_ulogin_userExist($login) {
  * Транслит
  */
 function fn_ulogin_translitIt($str) {
-	$tr = array("А" => "a", "Б" => "b", "В" => "v", "Г" => "g", "Д" => "d", "Е" => "e", "Ж" => "j", "З" => "z", "И" => "i", "Й" => "y", "К" => "k", "Л" => "l", "М" => "m", "Н" => "n", "О" => "o", "П" => "p", "Р" => "r", "С" => "s", "Т" => "t", "У" => "u", "Ф" => "f", "Х" => "h", "Ц" => "ts", "Ч" => "ch", "Ш" => "sh", "Щ" => "sch", "Ъ" => "", "Ы" => "yi", "Ь" => "", "Э" => "e", "Ю" => "yu", "Я" => "ya", "а" => "a", "б" => "b", "в" => "v", "г" => "g", "д" => "d", "е" => "e", "ж" => "j", "з" => "z", "и" => "i", "й" => "y", "к" => "k", "л" => "l", "м" => "m", "н" => "n", "о" => "o", "п" => "p", "р" => "r", "с" => "s", "т" => "t", "у" => "u", "ф" => "f", "х" => "h", "ц" => "ts", "ч" => "ch", "ш" => "sh", "щ" => "sch", "ъ" => "y", "ы" => "y", "ь" => "", "э" => "e", "ю" => "yu", "я" => "ya");
+	$tr = array (
+		"А" => "a", "Б" => "b", "В" => "v", "Г" => "g", "Д" => "d", "Е" => "e", "Ж" => "j", "З" => "z", "И" => "i",
+		"Й" => "y", "К" => "k", "Л" => "l", "М" => "m", "Н" => "n", "О" => "o", "П" => "p", "Р" => "r", "С" => "s",
+		"Т" => "t", "У" => "u", "Ф" => "f", "Х" => "h", "Ц" => "ts", "Ч" => "ch", "Ш" => "sh", "Щ" => "sch", "Ъ" => "",
+		"Ы" => "yi", "Ь" => "", "Э" => "e", "Ю" => "yu", "Я" => "ya", "а" => "a", "б" => "b", "в" => "v", "г" => "g",
+		"д" => "d", "е" => "e", "ж" => "j", "з" => "z", "и" => "i", "й" => "y", "к" => "k", "л" => "l", "м" => "m",
+		"н" => "n", "о" => "o", "п" => "p", "р" => "r", "с" => "s", "т" => "t", "у" => "u", "ф" => "f", "х" => "h",
+		"ц" => "ts", "ч" => "ch", "ш" => "sh", "щ" => "sch", "ъ" => "y", "ы" => "y", "ь" => "", "э" => "e", "ю" => "yu",
+		"я" => "ya"
+	);
 	if(preg_match('/[^A-Za-z0-9\_\-]/', $str)) {
 		$str = strtr($str, $tr);
 		$str = preg_replace('/[^A-Za-z0-9\_\-\.]/', '', $str);
