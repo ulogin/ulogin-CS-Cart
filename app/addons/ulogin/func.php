@@ -231,7 +231,7 @@ function fn_ulogin_registration_user($u_user, $in_db = 0) {
 		$user_data['s_phone'] = isset($u_user['phone']) ? trim(preg_replace('/[^0-9]/', ' ', $u_user['phone'])) : '';
 		$user_data['b_city'] = isset($u_user['city']) ? $u_user['city'] : '';
 		$user_data['s_city'] = isset($u_user['city']) ? $u_user['city'] : '';
-		$user_data['birthday'] = $date['2'];
+		$user_data['birthday'] = isset($date['2']) ? $date['2'] : '';
 		list($user_data['user_id'], $profile_id) = fn_update_user('', $user_data, $auth, true, true, true);
 		$u_user_data = array('user_id' => $user_data['user_id'], 'identity' => $u_user['identity'], 'network' => $u_user['network']);
 		db_query("INSERT INTO ?:ulogin ?e", $u_user_data);
